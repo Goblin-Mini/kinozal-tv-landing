@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101317">
+  <meta name="description" content="Кинозал ТВ — удобный каталог фильмов, сериалов и других раздач для Android и Android TV.">
+  <title>Кинозал ТВ — кино и сериалы на большом экране</title>
+  <style>
+    :root {
+      --bg:#101317; --panel:#1d2227; --panel2:#242b30; --cream:#fbe2ad;
+      --orange:#AE3712; --teal:#AE3712; --gold:#AE3712; --muted:#aeb7b9;
+      --line:rgba(251,226,173,.13); --max:1160px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:#f7f3e9;font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:850;letter-spacing:.2px}
+    .logo{width:54px;height:54px;display:block;object-fit:contain;filter:drop-shadow(0 5px 14px #0008)}
+    .navlinks{display:flex;gap:26px;color:var(--muted);font-size:14px}
+    .navlinks a:hover{color:var(--cream)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 21px;border-radius:12px;font-weight:800;transition:.2s;border:1px solid transparent}
+    .btn-primary{background:var(--orange);color:#fff7e8;box-shadow:0 10px 30px #AE371233}
+    .btn-primary:hover{background:#C64A20;transform:translateY(-2px)}
+    .btn-ghost{border-color:var(--line);color:var(--cream);background:#ffffff06}
+    .hero{padding:68px 0 76px;position:relative;overflow:hidden}
+    .hero:before{content:"";position:absolute;width:560px;height:560px;border-radius:50%;right:-180px;top:-160px;background:radial-gradient(circle,#AE371233,transparent 68%);pointer-events:none}
+    .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;align-items:center;gap:50px;position:relative}
+    .eyebrow{color:var(--teal);font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase}
+    h1{font-size:clamp(42px,6vw,70px);line-height:1.04;letter-spacing:-2px;margin:18px 0;color:var(--cream)}
+    .lead{font-size:19px;color:#c4ccca;max-width:600px;margin:0 0 28px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .smallnote{font-size:12px;color:#899495;margin-top:16px}
+    .device-wrap{display:flex;justify-content:center;align-items:center;min-height:390px}
+    .tv{width:min(100%,460px);aspect-ratio:1.25;background:linear-gradient(145deg,#30383d,#161b1f);border:1px solid #64717455;border-radius:24px;padding:15px;box-shadow:0 30px 90px #0009;transform:rotate(1.5deg)}
+    .screen{height:100%;border-radius:15px;background:linear-gradient(135deg,#20272b,#111518);padding:22px;overflow:hidden;position:relative}
+    .screen-head{display:flex;justify-content:space-between;align-items:center;color:var(--cream);font-weight:850;font-size:18px}
+    .screen-tag{font-size:10px;color:var(--teal);letter-spacing:1px}
+    .poster-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+    .poster{height:170px;border-radius:9px;position:relative;overflow:hidden;background:linear-gradient(150deg,#AE3712,#3b211b 55%,#111);border:1px solid #ffffff1c}
+    .poster:nth-child(2){background:linear-gradient(150deg,#AE3712,#263e43 55%,#111)}
+    .poster:nth-child(3){background:linear-gradient(150deg,#AE3712,#58411a 55%,#111)}
+    .poster:before{content:"";position:absolute;inset:20% 12% 15%;border:1px solid #ffffff66;border-radius:50% 50% 8px 8px;opacity:.5}
+    .poster span{position:absolute;bottom:10px;left:10px;right:10px;font-size:11px;font-weight:800;color:#fff;text-shadow:0 2px 6px #000}
+    .screen-foot{display:flex;gap:8px;margin-top:16px}
+    .screen-foot i{height:6px;border-radius:5px;background:#ffffff24;flex:1}
+    .screen-foot i:first-child{background:var(--gold)}
+    section{padding:76px 0}
+    .section-head{max-width:680px;margin-bottom:34px}
+    h2{font-size:clamp(29px,4vw,42px);line-height:1.12;margin:0 0 12px;color:var(--cream);letter-spacing:-.8px}
+    .section-head p{margin:0;color:var(--muted)}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .feature{background:linear-gradient(145deg,var(--panel),#171c20);border:1px solid var(--line);border-radius:18px;padding:24px}
+    .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#AE371222;color:var(--gold);font-size:21px;margin-bottom:18px}
+    .feature h3{margin:0 0 8px;color:#fff1d4;font-size:18px}
+    .feature p{margin:0;color:var(--muted);font-size:14px}
+    .compat{background:linear-gradient(110deg,#1d2529,#171c20);border-block:1px solid var(--line)}
+    .compat-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center}
+    .compat-list{display:grid;gap:13px}
+    .compat-item{display:flex;align-items:center;gap:12px;color:#d4dcda}
+    .check{color:var(--gold);font-weight:900}
+    .install{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;counter-reset:step}
+    .step{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px}
+    .step:before{counter-increment:step;content:"0" counter(step);display:block;color:var(--teal);font-size:13px;font-weight:900;letter-spacing:1px;margin-bottom:12px}
+    .step h3{margin:0 0 8px;color:var(--cream)}
+    .step p{margin:0;color:var(--muted);font-size:14px}
+    .download-panel{background:linear-gradient(120deg,#4a2118,#241d1a 60%,#1b2528);border:1px solid #AE371233;border-radius:24px;padding:clamp(26px,5vw,50px);display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .download-panel p{color:#d3c8b6;margin:8px 0 0}
+    .support-panel{background:linear-gradient(120deg,#252a2c,#191e21);border:1px solid #AE371255;border-radius:22px;padding:clamp(24px,4vw,38px);display:flex;align-items:center;justify-content:space-between;gap:26px}
+    .support-panel p{color:var(--muted);margin:8px 0 0;max-width:650px}
+    .support-panel .btn{white-space:nowrap}
+    footer{padding:30px 0 45px;color:#85908f;font-size:13px}
+    footer .foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:24px}
+    @media(max-width:800px){.hero-grid,.compat-grid{grid-template-columns:1fr}.hero{padding:48px 0}.device-wrap{min-height:300px}.tv{max-width:420px}.features{grid-template-columns:repeat(2,1fr)}.install{grid-template-columns:1fr}.navlinks{display:none}}
+    @media(max-width:520px){.wrap{width:min(100% - 28px,var(--max))}.features{grid-template-columns:1fr}.hero-grid{gap:22px}.lead{font-size:17px}.poster{height:125px}.screen{padding:15px}.tv{padding:9px}.download-panel,.support-panel{align-items:flex-start;flex-direction:column}.nav .btn{padding:10px 13px;font-size:13px}}
+  </style>
+</head>
+<body>
+<header class="wrap nav">
+  <a class="brand" href="#"><img class="logo" src="assets/kinozal-tv-logo.png" alt="Логотип Кинозал ТВ"><span>Кинозал ТВ</span></a>
+  <nav class="navlinks"><a href="#features">Возможности</a><a href="#compat">Совместимость</a><a href="#install">Установка</a></nav>
+  <a class="btn btn-ghost" href="https://github.com/Goblin-Mini/KinozalClient" target="_blank" rel="noopener">GitHub ↗</a>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Кино и сериалы на большом экране</div>
+        <h1>Твой Кинозал.<br>Твой экран.</h1>
+        <p class="lead">Удобный каталог раздач Кинозал для Android и Android TV. Ищи фильмы и сериалы, изучай подборки и открывай карточки релизов с помощью пульта или сенсорного экрана.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/Goblin-Mini/KinozalClient/releases/latest" target="_blank" rel="noopener">↓ Скачать приложение</a>
+          <a class="btn btn-ghost" href="#features">Узнать больше</a>
+        </div>
+        <div class="smallnote">Android · Android TV · Управление пультом</div>
+      </div>
+      <div class="device-wrap" aria-label="Декоративный макет интерфейса приложения">
+        <div class="tv"><div class="screen">
+          <div class="screen-head"><span>Кинозал ТВ</span><span class="screen-tag">КАТАЛОГ</span></div>
+          <div class="poster-row">
+            <div class="poster"><span>ФИЛЬМЫ</span></div>
+            <div class="poster"><span>СЕРИАЛЫ</span></div>
+            <div class="poster"><span>ПОДБОРКИ</span></div>
+          </div>
+          <div class="screen-foot"><i></i><i></i><i></i><i></i></div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Возможности</div><h2>Всё нужное — под рукой</h2><p>Каталог и инструменты для комфортного поиска релизов, без лишних переходов по разделам сайта.</p></div>
+      <div class="features">
+        <article class="feature"><div class="ico">▦</div><h3>Каталог и категории</h3><p>Фильмы, сериалы, мультфильмы, аниме и другие разделы каталога.</p></article>
+        <article class="feature"><div class="ico">⌕</div><h3>Поиск и сортировка</h3><p>Находи нужные релизы и сортируй список по доступным параметрам.</p></article>
+        <article class="feature"><div class="ico">▤</div><h3>Подборки и новинки</h3><p>Отдельные ленты помогают быстрее замечать интересные публикации.</p></article>
+        <article class="feature"><div class="ico">♡</div><h3>Избранное</h3><p>Сохраняй понравившиеся раздачи локально в приложении.</p></article>
+        <article class="feature"><div class="ico">▶</div><h3>TorrServe</h3><p>Передавай торрент для воспроизведения через настроенный TorrServe.</p></article>
+        <article class="feature"><div class="ico">◉</div><h3>Управление с пульта</h3><p>Интерфейс рассчитан на навигацию Android TV с помощью пульта.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="compat" id="compat">
+    <div class="wrap compat-grid">
+      <div><div class="eyebrow">Совместимость</div><h2>Создано для телевизора. Удобно и на телефоне.</h2><p style="color:var(--muted)">Кинозал ТВ ориентирован на Android TV, при этом приложение можно использовать и на обычных Android-устройствах.</p></div>
+      <div class="compat-list">
+        <div class="compat-item"><span class="check">✓</span> Android TV и ТВ-приставки на Android</div>
+        <div class="compat-item"><span class="check">✓</span> Android-смартфоны и планшеты</div>
+        <div class="compat-item"><span class="check">✓</span> Навигация с помощью пульта</div>
+        <div class="compat-item"><span class="check">✓</span> Подключение к TorrServe</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="install">
+    <div class="wrap">
+      <div class="section-head"><div class="eyebrow">Начало работы</div><h2>Установка в три шага</h2><p>Скачай APK и установи приложение на своё Android-устройство.</p></div>
+      <div class="install">
+        <article class="step"><h3>Скачай APK</h3><p>Нажми кнопку загрузки и получи актуальный установочный файл из раздела релизов проекта.</p></article>
+        <article class="step"><h3>Разреши установку</h3><p>Если Android запросит разрешение на установку из выбранного источника, подтверди его в настройках.</p></article>
+        <article class="step"><h3>Открой Кинозал ТВ</h3><p>Запусти приложение, настрой зеркало сайта и авторизуйся при необходимости.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="download-panel">
+        <div><div class="eyebrow">Готов к просмотру?</div><h2 style="margin:8px 0 0">Установи Кинозал ТВ</h2><p>Скачивание актуальной версии — на странице релизов проекта.</p></div>
+        <a class="btn btn-primary" href="https://github.com/Goblin-Mini/KinozalClient/releases/latest" target="_blank" rel="noopener">Скачать APK ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="support">
+    <div class="wrap">
+      <div class="support-panel">
+        <div>
+          <div class="eyebrow">Поддержка проекта</div>
+          <h2 style="margin:8px 0 0">Нравится Кинозал ТВ?</h2>
+          <p>Поддержи развитие приложения добровольным донатом. Любая сумма помогает развивать проект, исправлять ошибки и добавлять новые возможности.</p>
+        </div>
+        <a class="btn btn-primary" href="https://godonate.ru/@kinozal-tv" target="_blank" rel="noopener">♥ Поддержать Кинозал ТВ ↗</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap foot"><span>© Кинозал ТВ</span><span><a href="https://github.com/Goblin-Mini/KinozalClient" target="_blank" rel="noopener">Исходный код на GitHub ↗</a></span><span>Неофициальный клиент каталога Кинозал.</span></div></footer>
+</body>
+</html>
