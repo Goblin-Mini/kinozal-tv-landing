@@ -70,6 +70,7 @@
     .download-panel{background:linear-gradient(120deg,#4a2118,#241d1a 60%,#1b2528);border:1px solid #AE371233;border-radius:24px;padding:clamp(26px,5vw,50px);display:flex;align-items:center;justify-content:space-between;gap:30px}
     .download-panel p{color:#d3c8b6;margin:8px 0 0}
     .support-panel{background:linear-gradient(120deg,#252a2c,#191e21);border:1px solid #AE371255;border-radius:22px;padding:clamp(24px,4vw,38px);display:flex;align-items:center;justify-content:space-between;gap:26px}
+    .license-card{background:linear-gradient(120deg,#252a2c,#191e21);border:1px solid #AE371255;border-radius:22px;padding:clamp(24px,4vw,38px)}
     .support-panel p{color:var(--muted);margin:8px 0 0;max-width:650px}
     .support-panel .btn{white-space:nowrap}
     footer{padding:30px 0 45px;color:#85908f;font-size:13px}
@@ -161,6 +162,7 @@
 
   <section id="license" class="compat">
     <div class="wrap">
+      <div class="license-card">
       <div class="section-head">
         <div class="eyebrow">Лицензирование</div>
         <h2>Одна лицензия — три устройства</h2>
@@ -182,10 +184,11 @@
           <a class="btn btn-primary" href="https://t.me/kinozalclient" target="_blank" rel="noopener">Написать в Telegram ↗</a>
         </div>
       </div>
+      </div>
     </div>
   </section>
 
-  <section id="support">
+  <section id="support" hidden>
     <div class="wrap">
       <div class="support-panel">
         <div>
